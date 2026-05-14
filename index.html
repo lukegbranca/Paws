@@ -57,7 +57,34 @@
       background: rgba(18, 35, 71, 0.96);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(212,191,154,0.15);
+    }
+
+    nav::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(212,191,154,0.5) 25%, rgba(212,191,154,1) 50%, rgba(212,191,154,0.5) 75%, transparent 100%);
+      animation: navBorderPulse 4s ease-in-out infinite;
+    }
+
+    @keyframes navBorderPulse {
+      0%, 100% { opacity: 0.45; }
+      50% { opacity: 1; }
+    }
+
+    .nav-logo-icon {
+      color: var(--gold);
+      flex-shrink: 0;
+      opacity: 0.85;
+      transition: transform 0.4s ease, opacity 0.3s;
+    }
+
+    .nav-logo:hover .nav-logo-icon {
+      transform: rotate(-12deg) scale(1.12);
+      opacity: 1;
     }
 
     .nav-logo {
@@ -207,6 +234,28 @@
       text-transform: uppercase;
       color: var(--gold);
       margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+    }
+
+    .hero-eyebrow::before,
+    .hero-eyebrow::after {
+      content: '';
+      display: block;
+      width: 52px;
+      height: 1px;
+      opacity: 0.65;
+      flex-shrink: 0;
+    }
+
+    .hero-eyebrow::before {
+      background: linear-gradient(90deg, transparent, var(--gold));
+    }
+
+    .hero-eyebrow::after {
+      background: linear-gradient(90deg, var(--gold), transparent);
     }
 
     .hero-title {
@@ -217,7 +266,16 @@
       line-height: 1.1;
       margin-bottom: 24px;
       letter-spacing: 1px;
-      text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+      text-shadow: 0 2px 20px rgba(0,0,0,0.45), 0 0 80px rgba(212,191,154,0.12);
+    }
+
+    .hero-content {
+      animation: heroFadeUp 1s ease-out both;
+    }
+
+    @keyframes heroFadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
     .hero-title em {
@@ -243,7 +301,8 @@
 
     .btn-primary {
       display: inline-block;
-      background: var(--gold);
+      background: linear-gradient(105deg, #c8b386 0%, #dfd0a8 40%, #eee0c0 50%, #dfd0a8 60%, #c8b386 100%);
+      background-size: 250% auto;
       color: var(--navy-dark);
       padding: 16px 44px;
       font-size: 10px;
@@ -253,14 +312,21 @@
       text-decoration: none;
       border-radius: 1px;
       border: 1px solid transparent;
-      transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
-      box-shadow: 0 4px 20px rgba(212,191,154,0.3);
+      transition: background-position 0.6s ease, transform 0.2s, box-shadow 0.25s;
+      box-shadow: 0 4px 24px rgba(212,191,154,0.4), 0 1px 0 rgba(255,255,240,0.3) inset;
+      animation: btnShine 6s linear infinite;
+    }
+
+    @keyframes btnShine {
+      0%   { background-position: 200% center; }
+      100% { background-position: -50% center; }
     }
 
     .btn-primary:hover {
-      background: var(--gold-hover);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(212,191,154,0.35);
+      background-position: right center;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 36px rgba(212,191,154,0.55), 0 0 20px rgba(212,191,154,0.2);
+      animation-play-state: paused;
     }
 
     .btn-outline {
@@ -549,9 +615,67 @@
     /* ── GALLERY ─────────────────────────────────────────────── */
     #gallery {
       background: var(--navy);
-      background-image: radial-gradient(ellipse at 20% 50%, rgba(61,127,191,0.15) 0%, transparent 60%),
-                        radial-gradient(ellipse at 80% 20%, rgba(200,169,126,0.08) 0%, transparent 50%);
+      background-image:
+        radial-gradient(ellipse at 12% 40%, rgba(61,127,191,0.32) 0%, transparent 48%),
+        radial-gradient(ellipse at 88% 60%, rgba(61,127,191,0.22) 0%, transparent 44%),
+        radial-gradient(ellipse at 50% 5%,  rgba(212,191,154,0.1) 0%, transparent 38%),
+        radial-gradient(ellipse at 75% 90%, rgba(61,127,191,0.15) 0%, transparent 40%);
       padding: 96px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #gallery::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent 0%, rgba(212,191,154,0.5) 20%, rgba(212,191,154,1) 50%, rgba(212,191,154,0.5) 80%, transparent 100%);
+      z-index: 2;
+    }
+
+    #gallery::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(212,191,154,0.3) 30%, rgba(212,191,154,0.7) 50%, rgba(212,191,154,0.3) 70%, transparent 100%);
+      z-index: 2;
+    }
+
+    #gallery .section-inner { position: relative; z-index: 2; }
+
+    .gallery-orb {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .gallery-orb-1 {
+      width: 480px; height: 480px;
+      background: radial-gradient(circle, rgba(61,127,191,0.22) 0%, transparent 70%);
+      top: -140px; left: -120px;
+      animation: orbFloat 11s ease-in-out infinite;
+    }
+
+    .gallery-orb-2 {
+      width: 320px; height: 320px;
+      background: radial-gradient(circle, rgba(212,191,154,0.1) 0%, transparent 70%);
+      bottom: -60px; right: 8%;
+      animation: orbFloat 9s ease-in-out infinite reverse;
+    }
+
+    .gallery-orb-3 {
+      width: 220px; height: 220px;
+      background: radial-gradient(circle, rgba(61,127,191,0.16) 0%, transparent 70%);
+      top: 45%; right: -60px;
+      animation: orbFloat 13s ease-in-out infinite;
+    }
+
+    @keyframes orbFloat {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50%       { transform: translateY(-28px) scale(1.06); }
     }
 
     #gallery .section-label { color: var(--gold); }
@@ -940,6 +1064,13 @@
 <!-- ── NAV ──────────────────────────────────────────────────── -->
 <nav>
   <a href="#home" class="nav-logo">
+    <svg class="nav-logo-icon" width="28" height="28" viewBox="0 0 64 64" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <ellipse cx="32" cy="44" rx="17" ry="13"/>
+      <ellipse cx="13" cy="28" rx="7" ry="9.5" transform="rotate(-16 13 28)"/>
+      <ellipse cx="27" cy="19" rx="7" ry="9.5" transform="rotate(-5 27 19)"/>
+      <ellipse cx="43" cy="19" rx="7" ry="9.5" transform="rotate(5 43 19)"/>
+      <ellipse cx="56" cy="28" rx="7" ry="9.5" transform="rotate(16 56 28)"/>
+    </svg>
     <div class="nav-wordmark">
       <span class="nav-wordmark-main">Paws of Bayside</span>
       <span class="nav-wordmark-sub">Dog Walking &amp; Pet Care</span>
@@ -1102,6 +1233,9 @@
 
 <!-- ── GALLERY ────────────────────────────────────────────────── -->
 <section id="gallery">
+  <div class="gallery-orb gallery-orb-1"></div>
+  <div class="gallery-orb gallery-orb-2"></div>
+  <div class="gallery-orb gallery-orb-3"></div>
   <div class="section-inner">
     <div class="gallery-header">
       <p class="section-label">Life at Paws of Bayside</p>
