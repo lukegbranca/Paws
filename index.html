@@ -65,9 +65,28 @@
       text-decoration: none;
     }
 
-    .nav-logo img {
-      height: 52px;
-      width: auto;
+    .nav-wordmark {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+
+    .nav-wordmark-main {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--white);
+      letter-spacing: 2px;
+    }
+
+    .nav-wordmark-sub {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 8px;
+      font-weight: 400;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-top: 3px;
     }
 
     .nav-links {
@@ -135,79 +154,63 @@
       inset: 0;
       background-image: url('images/hero-beach.jpg');
       background-size: cover;
-      background-position: center 40%;
-      filter: brightness(0.22) saturate(0.55);
-      transform: scale(1.08);
+      background-position: center 75%;
+      filter: brightness(0.5);
+      transform: scale(1.02);
     }
 
     .hero-overlay {
       position: absolute;
       inset: 0;
-      background:
-        radial-gradient(ellipse 110% 90% at 50% 48%, rgba(18,35,71,0.08) 0%, rgba(18,35,71,0.9) 100%),
-        linear-gradient(180deg, rgba(18,35,71,0.65) 0%, rgba(18,35,71,0) 22%, rgba(18,35,71,0) 70%, rgba(18,35,71,0.6) 100%);
+      background: linear-gradient(
+        to bottom,
+        rgba(18, 35, 71, 0.55) 0%,
+        rgba(18, 35, 71, 0.2) 50%,
+        rgba(18, 35, 71, 0.45) 100%
+      );
       z-index: 1;
     }
 
     .hero-content {
       position: relative;
       z-index: 2;
-      max-width: 700px;
-      padding: 64px 56px;
-      background: rgba(18,35,71,0.18);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      border: 1px solid rgba(200,169,126,0.22);
-      box-shadow: 0 0 0 10px rgba(200,169,126,0.06), inset 0 0 60px rgba(18,35,71,0.2);
+      max-width: 780px;
+      padding: 0 24px;
     }
 
     .hero-eyebrow {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 14px;
       font-family: 'Montserrat', sans-serif;
-      font-size: 10px;
+      font-size: 11px;
       font-weight: 500;
-      letter-spacing: 5px;
+      letter-spacing: 4px;
       text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 28px;
-    }
-
-    .hero-eyebrow::before,
-    .hero-eyebrow::after {
-      content: '';
-      display: block;
-      width: 36px;
-      height: 1px;
-      background: rgba(200,169,126,0.5);
-      flex-shrink: 0;
+      margin-bottom: 20px;
     }
 
     .hero-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(42px, 6vw, 76px);
+      font-size: clamp(48px, 7vw, 82px);
       font-weight: 300;
       color: var(--white);
-      line-height: 1.12;
-      margin-bottom: 20px;
-      letter-spacing: 2px;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.4);
     }
 
     .hero-title em {
       font-style: italic;
-      color: rgba(255,255,255,0.88);
-      font-weight: 300;
+      color: rgba(255,255,255,0.9);
     }
 
     .hero-sub {
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 300;
-      letter-spacing: 2px;
-      color: rgba(255,255,255,0.7);
+      letter-spacing: 1.5px;
+      color: rgba(255,255,255,0.8);
       margin-bottom: 44px;
-      line-height: 2;
+      line-height: 1.8;
     }
 
     .hero-buttons {
@@ -812,7 +815,25 @@
       gap: 16px;
     }
 
-    .footer-logo img { height: 38px; }
+    .footer-wordmark { line-height: 1; }
+    .footer-wordmark-main {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.8);
+      letter-spacing: 2px;
+    }
+    .footer-wordmark-sub {
+      display: block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 7px;
+      font-weight: 400;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-top: 4px;
+    }
 
     .footer-text {
       font-size: 12px;
@@ -836,7 +857,6 @@
 
     /* ── RESPONSIVE ──────────────────────────────────────────── */
     @media (max-width: 900px) {
-      .hero-content { padding: 40px 28px; }
       nav { padding: 0 24px; }
       .nav-links { display: none; }
       .nav-links.open { display: flex; flex-direction: column; position: fixed; top: 80px; left: 0; right: 0; background: var(--navy); padding: 24px; gap: 20px; box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
@@ -875,7 +895,10 @@
 <!-- ── NAV ──────────────────────────────────────────────────── -->
 <nav>
   <a href="#home" class="nav-logo">
-    <img src="images/logo.png" alt="Paws of Bayside" />
+    <div class="nav-wordmark">
+      <span class="nav-wordmark-main">Paws of Bayside</span>
+      <span class="nav-wordmark-sub">Dog Walking &amp; Pet Care</span>
+    </div>
   </a>
   <ul class="nav-links" id="navLinks">
     <li><a href="#services">Services</a></li>
@@ -1212,8 +1235,9 @@
 
 <!-- ── FOOTER ─────────────────────────────────────────────────── -->
 <footer>
-  <div class="footer-logo">
-    <img src="images/logo.png" alt="Paws of Bayside" />
+  <div class="footer-wordmark">
+    <span class="footer-wordmark-main">Paws of Bayside</span>
+    <span class="footer-wordmark-sub">Dog Walking &amp; Pet Care</span>
   </div>
   <p class="footer-text">© 2025 Paws of Bayside · Sandringham, VIC · Est. 2021</p>
   <div class="footer-links">
