@@ -19,7 +19,8 @@
       --sky:    #EDE5D8;
       --white:  #FFFFFF;
       --off-white: #F8F3EC;
-      --gold:   #C8A97E;
+      --gold:   #D4BF9A;
+      --gold-hover: #C0AA84;
       --text:   #1a1a2e;
       --text-light: #4a5568;
     }
@@ -52,10 +53,11 @@
       align-items: center;
       justify-content: space-between;
       padding: 0 48px;
-      height: 80px;
-      background: rgba(27, 53, 101, 0.97);
-      backdrop-filter: blur(8px);
-      box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+      height: 76px;
+      background: rgba(18, 35, 71, 0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(212,191,154,0.15);
     }
 
     .nav-logo {
@@ -97,27 +99,49 @@
 
     .nav-links a {
       text-decoration: none;
-      color: rgba(255,255,255,0.85);
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 1.8px;
+      color: rgba(255,255,255,0.7);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      transition: color 0.2s;
+      transition: color 0.25s;
+      position: relative;
+      padding-bottom: 2px;
     }
 
-    .nav-links a:hover { color: var(--gold); }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--gold);
+      transition: width 0.25s ease;
+    }
+
+    .nav-links a:hover { color: rgba(255,255,255,0.95); }
+    .nav-links a:hover::after { width: 100%; }
 
     .nav-cta {
-      background: var(--gold);
-      color: var(--navy-dark) !important;
-      padding: 10px 24px !important;
-      border-radius: 2px;
-      font-weight: 600 !important;
-      letter-spacing: 1.5px !important;
-      transition: background 0.2s !important;
+      background: transparent !important;
+      color: var(--gold) !important;
+      border: 1px solid rgba(212,191,154,0.6) !important;
+      padding: 9px 22px !important;
+      border-radius: 1px;
+      font-size: 10px !important;
+      font-weight: 500 !important;
+      letter-spacing: 2px !important;
+      transition: background 0.2s, border-color 0.2s, color 0.2s !important;
     }
 
-    .nav-cta:hover { background: #B89570 !important; color: var(--navy-dark) !important; }
+    .nav-cta::after { display: none !important; }
+
+    .nav-cta:hover {
+      background: rgba(212,191,154,0.1) !important;
+      border-color: var(--gold) !important;
+      color: var(--gold) !important;
+    }
 
     .hamburger {
       display: none;
@@ -154,7 +178,7 @@
       inset: 0;
       background-image: url('images/hero-beach.jpg');
       background-size: cover;
-      background-position: center 75%;
+      background-position: 18% 40%;
       filter: brightness(0.5);
       transform: scale(1.02);
     }
@@ -224,34 +248,44 @@
       display: inline-block;
       background: var(--gold);
       color: var(--navy-dark);
-      padding: 15px 40px;
-      font-size: 11px;
+      padding: 16px 44px;
+      font-size: 10px;
       font-weight: 600;
-      letter-spacing: 2px;
+      letter-spacing: 3px;
       text-transform: uppercase;
       text-decoration: none;
-      border-radius: 2px;
-      transition: background 0.2s, transform 0.2s;
+      border-radius: 1px;
+      border: 1px solid transparent;
+      transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+      box-shadow: 0 4px 20px rgba(212,191,154,0.3);
     }
 
-    .btn-primary:hover { background: #B89570; transform: translateY(-1px); }
+    .btn-primary:hover {
+      background: var(--gold-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(212,191,154,0.35);
+    }
 
     .btn-outline {
       display: inline-block;
       background: transparent;
-      color: var(--white);
-      padding: 15px 40px;
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 2px;
+      color: rgba(255,255,255,0.85);
+      padding: 16px 44px;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 3px;
       text-transform: uppercase;
       text-decoration: none;
-      border: 1px solid rgba(255,255,255,0.5);
-      border-radius: 2px;
-      transition: border-color 0.2s, background 0.2s;
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 1px;
+      transition: border-color 0.25s, color 0.25s, background 0.25s;
     }
 
-    .btn-outline:hover { border-color: white; background: rgba(255,255,255,0.08); }
+    .btn-outline:hover {
+      border-color: rgba(212,191,154,0.7);
+      color: var(--gold);
+      background: rgba(212,191,154,0.06);
+    }
 
     .hero-scroll {
       position: absolute;
@@ -284,8 +318,10 @@
 
     /* ── TRUST BAR ───────────────────────────────────────────── */
     .trust-bar {
-      background: var(--navy);
-      padding: 20px 48px;
+      background: var(--navy-dark);
+      border-top: 1px solid rgba(212,191,154,0.12);
+      border-bottom: 1px solid rgba(212,191,154,0.12);
+      padding: 18px 48px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -297,10 +333,10 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      color: rgba(255,255,255,0.8);
-      font-size: 12px;
-      letter-spacing: 1px;
-      font-weight: 400;
+      color: rgba(255,255,255,0.6);
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      font-weight: 300;
     }
 
     .trust-item svg {
@@ -314,11 +350,11 @@
     .section-inner { max-width: 1140px; margin: 0 auto; }
 
     .section-label {
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 500;
-      letter-spacing: 4px;
+      letter-spacing: 5px;
       text-transform: uppercase;
-      color: var(--blue);
+      color: var(--gold);
       margin-bottom: 16px;
     }
 
@@ -342,10 +378,10 @@
     }
 
     .divider {
-      width: 48px;
-      height: 2px;
-      background: var(--gold);
-      margin: 24px 0;
+      width: 56px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--gold), rgba(212,191,154,0.2));
+      margin: 28px 0;
     }
 
     /* ── SERVICES ────────────────────────────────────────────── */
@@ -368,31 +404,35 @@
 
     .service-card {
       background: var(--white);
-      border: 1px solid rgba(27,53,101,0.08);
-      border-radius: 4px;
-      padding: 44px 36px;
+      border-radius: 2px;
+      padding: 48px 36px;
       text-align: center;
-      transition: box-shadow 0.3s, transform 0.3s;
+      transition: box-shadow 0.35s, transform 0.35s;
       position: relative;
       overflow: hidden;
+      box-shadow: 0 2px 16px rgba(160,130,90,0.07);
     }
 
     .service-card::before {
       content: '';
       position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--navy), var(--blue));
+      top: 0; left: 50%; right: 50%;
+      height: 2px;
+      background: var(--gold);
       opacity: 0;
-      transition: opacity 0.3s;
+      transition: left 0.35s ease, right 0.35s ease, opacity 0.2s;
     }
 
     .service-card:hover {
-      box-shadow: 0 12px 40px rgba(27,53,101,0.12);
-      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(160,130,90,0.14);
+      transform: translateY(-5px);
     }
 
-    .service-card:hover::before { opacity: 1; }
+    .service-card:hover::before {
+      opacity: 1;
+      left: 0;
+      right: 0;
+    }
 
     .service-icon {
       width: 64px;
@@ -775,34 +815,42 @@
       display: inline-block;
       background: var(--gold);
       color: var(--navy-dark);
-      padding: 16px 44px;
-      font-size: 11px;
+      padding: 17px 48px;
+      font-size: 10px;
       font-weight: 600;
-      letter-spacing: 2px;
+      letter-spacing: 3px;
       text-transform: uppercase;
       text-decoration: none;
-      border-radius: 2px;
-      transition: background 0.2s;
+      border-radius: 1px;
+      box-shadow: 0 4px 20px rgba(212,191,154,0.25);
+      transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
     }
 
-    .btn-gold:hover { background: #B89570; }
+    .btn-gold:hover {
+      background: var(--gold-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(212,191,154,0.3);
+    }
 
     .btn-outline-white {
       display: inline-block;
       background: transparent;
-      color: white;
-      padding: 16px 44px;
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 2px;
+      color: rgba(255,255,255,0.75);
+      padding: 17px 48px;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 3px;
       text-transform: uppercase;
       text-decoration: none;
-      border: 1px solid rgba(255,255,255,0.35);
-      border-radius: 2px;
-      transition: border-color 0.2s;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 1px;
+      transition: border-color 0.25s, color 0.25s;
     }
 
-    .btn-outline-white:hover { border-color: white; }
+    .btn-outline-white:hover {
+      border-color: rgba(212,191,154,0.6);
+      color: var(--gold);
+    }
 
     /* ── FOOTER ──────────────────────────────────────────────── */
     footer {
